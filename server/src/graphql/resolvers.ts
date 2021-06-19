@@ -1,14 +1,10 @@
 import { IResolvers } from "apollo-server-express";
 import { listings } from "../listings";
-import { persons } from "../persons";
 
 export const resolvers: IResolvers = {
   Query: {
     listings: () => {
       return listings;
-    },
-    persons: () => {
-      return persons;
     },
   },
   Mutation: {
@@ -20,21 +16,6 @@ export const resolvers: IResolvers = {
       }
 
       throw new Error("failed to delete listing");
-    },
-    addPerson: (
-      _root: undefined,
-      { id, name, age }: { id: string; name: string; age: number }
-    ) => {
-      if (id && name && age) {
-        persons.push({
-          id,
-          name,
-          age,
-        });
-        return persons[persons.length - 1];
-      } else {
-        throw new Error("failed to create person");
-      }
     },
   },
 };

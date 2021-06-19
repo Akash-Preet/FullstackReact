@@ -4,12 +4,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const apollo_server_express_1 = require("apollo-server-express");
+//import { schema } from "./graphql";
+const graphql_1 = require("./graphql");
 const app = express_1.default();
 const port = 9000;
-let one = 1;
-let two = 2;
-app.get("/", (req, res) => {
-    res.send(`1 + 2 = ${one + two}`);
-});
+const server = new apollo_server_express_1.ApolloServer({ typeDefs: graphql_1.typeDefs, resolvers: graphql_1.resolvers });
+server.applyMiddleware({ app, path: "/api" });
 app.listen(port);
-console.log(`[app]: http://localhost:${port}`);
+console.log(`[app] : http://localhost:${port}`);
