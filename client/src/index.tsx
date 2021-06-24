@@ -1,10 +1,13 @@
 import React from 'react';
 import {render} from 'react-dom';
 import reportWebVitals from './reportWebVitals';
+import { Listings } from './sections';
 
 render(
   <React.StrictMode>
-    <div><h1>Hello Akash</h1></div>
+    <div>
+      <Listings title="TinyHouse Listings"></Listings>
+    </div>
   </React.StrictMode>,
   document.getElementById('root')
 );
